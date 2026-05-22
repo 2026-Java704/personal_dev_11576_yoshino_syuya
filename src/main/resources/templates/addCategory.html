@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>カテゴリ追加</title>
+	<link rel="stylesheet" href="/css/home2.css">
+</head>
+
+<body>
+	<h1 class="title header sync-rate">EXTLA CATEGORY</h1>
+	<form action="/home" method="get">
+		<button class="button button:hover cancel">Cancel</button>
+	</form>
+	<div>
+		<table border="1" class="log category">
+			<tr>
+				<th>カテゴリー</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="category:${categories}">
+				<td th:text="${category.name}"></td>
+				<td>
+					<form th:action="@{/category/{categoryId}/delete(categoryId=${category.id})}" method="post">
+						<button class="button button:hover">DELETE</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+
+		<form action="/category/add" method="post">
+			<span th:text="${message}" style="color: red"></span> <br>
+			<table border="1" class="nyuuryoku">
+				<tr>
+					<td>
+						<input class="textbox" type="text" name="name">
+					</td>
+					<td>
+						<button class="button button:hover">extla</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</body>
+
+</html>

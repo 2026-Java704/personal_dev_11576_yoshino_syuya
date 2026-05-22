@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>不正は許さない！</title>
+	<link rel="stylesheet" href="/css/home2.css">
+</head>
+
+<body>
+	<h1>君、ひょっとしてごまかそうとしているんじゃないかね</h1>
+
+	<form th:action="@{/expens/{expensId}/edit(expensId=${expens.id})}" method="post">
+		<ul th:if="${errorList}">
+			<li th:each="error:${errorList}" th:text="${error}"></li>
+		</ul>
+		<table border="1">
+			<tr>
+				<th>カテゴリー</th>
+				<td>
+					<select name="category">
+						<option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>日付</th>
+				<td>
+					<input type="date" name="date" th:value="${expens.date}">
+				</td>
+			</tr>
+			<tr>
+				<th>値段</th>
+				<td>
+					<input type="text" name="price1" th:value="${expens.price}">00円
+				</td>
+			</tr>
+			<tr>
+				<th>項目名</th>
+				<td>
+					<input type="text" name="name" th:value="${expens.name}">
+				</td>
+			</tr>
+		</table>
+		<button>更新</button>
+	</form>
+	<hr>
+	<a href="/home">ホームへ戻る</a>
+
+</body>
+
+</html>

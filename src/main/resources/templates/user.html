@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+	<link rel="stylesheet" href="/css/home2.css">
+</head>
+
+<body>
+	<h1 class="title header sync-rate">EXTLA ACCOUNT</h1>
+	<form action="/" method="get">
+		<button class="button button:hover cancel">Cancel</button>
+	</form>
+	<form action="/user" method="post">
+		<table border="1" class="nyuuryoku category">
+			<tr>
+				<td>
+					<input type="text" name="name" class="textbox" placeholder="NAME">
+					<input type="text" name="income" class="textbox" placeholder="INCOME">
+					<button class="button button:hover">EXTLA</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+
+</html>

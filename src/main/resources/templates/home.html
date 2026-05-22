@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>家計簿</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" href="/css/home2.css">
+</head>
+
+<body>
+	<main>
+		<h1 class="title header sync-rate"  th:classappend="${keisan < 0} ? ' danger' : ''">HOME</h1>
+	</main>
+
+	<table border="1" th:if="${keisan < 0}" class="warning table">
+		<tr>
+			<th>WARNING!!</th>
+		</tr>
+		<tr>
+			<th th:text="'合計: ' + ${totalSum}"></th>
+		</tr>
+	</table>
+
+	<table class="sidebar" th:classappend="${keisan < 0} ? ' danger' : ''">
+		<tr>
+			<td class="">NAME：[[${@account.name}]]</td>
+		</tr>
+		<tr>
+			<td class="">INCOME：[[${@account.income}]]</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/user">
+					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Edit Income</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/expens/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Expenditure</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/category/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Category</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/logout">
+					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Logout</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+
+
+
+	<div>
+		<table border="1" class="balance-core balance-core::before balance-amount status" th:classappend="${keisan < 0} ? ' danger' : ''">
+			<tr>
+				<th th:text="'BALANCE：' + ${keisan}"></th>
+			</tr>
+		</table>
+		<canvas class="panel" id="myChart" th:classappend="${keisan < 0} ? ' danger' : ''"></canvas>
+	</div>
+
+	<main>
+
+		<table border="1" class="log log-entry" th:classappend="${keisan < 0} ? ' danger' : ''">
+			<tr>
+				<th>DATE</th>
+				<th>CATEGORY</th>
+				<th>PRICE</th>
+				<th>MEMO</th>
+				<th>EDIT</th>
+				<th>DELRTE</th>
+			</tr>
+			<tr th:each="expens:${expens}">
+				<td th:text="${expens.date}"></td>
+				<td th:text="${expens.category.name}"></td>
+				<td th:text="${expens.price}"></td>
+				<td th:text="${expens.name}"></td>
+				<td>
+					<form th:action="@{/expens/{expensId}/edit(expensId=${expens.id})}" method="get">
+						<button class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">edit</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/expens/{expensId}/delete(expensId=${expens.id})}" method="post">
+						<button class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">delete</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</main>
+
+
+
+	<script th:inline="javascript">
+		const ctx = document.getElementById('myChart').getContext('2d');
+
+		const labels = /*[[${label}]]*/[];
+		const data = /*[[${data}]]*/[];
+
+		new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: labels,
+				datasets: [{
+					data: data
+				}]
+			}
+		});
+	</script>
+
+
+</body>
+
+</html>
