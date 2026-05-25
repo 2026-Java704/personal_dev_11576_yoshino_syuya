@@ -53,7 +53,8 @@ body::before {
 	left: 0;
 	border-right: 1px solid #39FF14;
 	background: rgba(0, 0, 0, 0.9);
-	padding-top: 80px;
+	padding-top: 10px;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 .sidebar a {
@@ -88,6 +89,15 @@ main {
 	position: relative;
 	background: rgba(0, 0, 0, 0.6);
 	box-shadow: 0 0 20px #39FF14 inset, 0 0 20px #39FF14;
+
+	/* ===== 六角形 ===== */
+	clip-path: polygon(10% 0%, 90% 0%,
+
+			100% 20%, 100% 80%,
+
+			90% 100%, 10% 100%,
+
+			0% 80%, 0% 20%);
 }
 
 .balance-core::before {
@@ -104,7 +114,7 @@ main {
 }
 
 .status {
-	margin-top: 10px;
+	margin-top: 60px;
 	color: #39FF14;
 }
 
@@ -127,15 +137,22 @@ main {
 	animation: pulse 2s infinite;
 }
 
+.balance-wrapper {
+	margin-left: 24%;
+	display: inline-block;
+	animation: pulse 2s infinite;
+}
+
 /* ===== ログフィード ===== */
 .log {
-	margin-top: 30px;
+	margin-top: -30px;
 	border: 1px solid #39FF14;
 	padding: 20px;
 	height: 200px;
 	overflow-y: auto;
 	background: rgba(0, 0, 0, 0.7);
 	font-family: monospace;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 .log-entry {
@@ -155,8 +172,8 @@ main {
 /* ===== グラフエリア ===== */
 .panel {
 	border: 1px solid #39FF14;
-	padding: 20px;
-	margin-top: 20px;
+	padding: 10px;
+	margin-top: -25px;
 	background: rgba(0, 0, 0, 0.7);
 	box-shadow: 0 0 10px #39FF14;
 }
@@ -165,14 +182,14 @@ div {
 
 	display: flex;
 	/*	width: 350px;*/
-	height: 40vh;
+	height: 60vh;
 
 	table {
 		height: 100px;
 		margin-right: 100px;
 
 		tr th {
-			height: 10px;
+			height: 20px;
 			max-height: 20px;
 		}
 	}
@@ -223,6 +240,7 @@ div {
 	cursor: pointer;
 	text-transform: uppercase;
 	transition: 0.3s;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 .button:hover {
@@ -264,6 +282,7 @@ div {
 	cursor: pointer;
 	text-transform: uppercase;
 	transition: 0.3s;
+	text-shadow: 0 0 10px #ff0033;
 }
 
 .button.danger:hover {

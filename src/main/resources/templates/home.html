@@ -24,10 +24,15 @@
 
 	<table class="sidebar" th:classappend="${keisan < 0} ? ' danger' : ''">
 		<tr>
+			<td>
+				<img src="/img/rogo.jpg" width="150px" height="150px">
+			</td>
+		</tr>
+		<tr>
 			<td class="">NAME：[[${@account.name}]]</td>
 		</tr>
 		<tr>
-			<td class="">INCOME：[[${@account.income}]]</td>
+			<td class="">INCOME：&yen;[[${@account.income}]]</td>
 		</tr>
 		<tr>
 			<td>
@@ -83,6 +88,7 @@
 		<canvas class="panel" id="myChart" th:classappend="${keisan < 0} ? ' danger' : ''"></canvas>
 	</div>
 
+
 	<main>
 
 		<table border="1" class="log log-entry" th:classappend="${keisan < 0} ? ' danger' : ''">
@@ -128,7 +134,8 @@
 			data: {
 				labels: labels,
 				datasets: [{
-					data: data
+					data: data,
+					backgroundColor: ['#7FFF00', '#00FF00', '#32CD32', '#228B22', '#008000', '#006400']
 				}]
 			}
 		});

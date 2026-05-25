@@ -8,10 +8,59 @@
 </head>
 
 <body>
-	<h1 class="title header sync-rate">EXTLA ACCOUNT</h1>
-	<form action="/" method="get">
-		<button class="button button:hover cancel">Cancel</button>
-	</form>
+	<main>
+		<h1 class="title header sync-rate">EXTLA ACCOUNT</h1>
+	</main>
+
+	<table class="sidebar">
+		<tr>
+			<td>
+				<img src="/img/rogo.jpg" width="150px" height="150px">
+			</td>
+		</tr>
+		<tr>
+			<td class="">NAME：[[${@account.name}]]</td>
+		</tr>
+		<tr>
+			<td class="">INCOME：&yen;[[${@account.income}]]</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/home" method="get">
+					<button style="width: 100%; height: 100%;" class="button button:hover">HOME</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/user">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Edit Income</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/expens/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Expenditure</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/category/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Category</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/logout">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Logout</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+
 	<form action="/user" method="post">
 		<table border="1" class="nyuuryoku category">
 			<tr>
