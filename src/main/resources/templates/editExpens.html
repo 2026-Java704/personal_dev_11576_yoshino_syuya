@@ -8,45 +8,131 @@
 </head>
 
 <body>
-	<h1>君、ひょっとしてごまかそうとしているんじゃないかね</h1>
+	<main>
+		<h1 class="title header sync-rate">EDIT EXPENS</h1>
+	</main>
+
+	<table class="sidebar">
+		<tr>
+			<td class="">NAME：[[${@account.name}]]</td>
+		</tr>
+		<tr>
+			<td class="">INCOME：[[${@account.income}]]</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/home" method="get">
+					<button style="width: 100%; height: 100%;" class="button button:hover">HOME</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/user">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Edit Income</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/expens/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Expenditure</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/category/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Category</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/logout">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Logout</button>
+				</form>
+			</td>
+		</tr>
+	</table>
 
 	<form th:action="@{/expens/{expensId}/edit(expensId=${expens.id})}" method="post">
-		<ul th:if="${errorList}">
-			<li th:each="error:${errorList}" th:text="${error}"></li>
-		</ul>
-		<table border="1">
-			<tr>
-				<th>カテゴリー</th>
-				<td>
-					<select name="category">
-						<option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">
-						</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>日付</th>
-				<td>
-					<input type="date" name="date" th:value="${expens.date}">
-				</td>
-			</tr>
-			<tr>
-				<th>値段</th>
-				<td>
-					<input type="text" name="price1" th:value="${expens.price}">00円
-				</td>
-			</tr>
-			<tr>
-				<th>項目名</th>
-				<td>
-					<input type="text" name="name" th:value="${expens.name}">
-				</td>
-			</tr>
-		</table>
-		<button>更新</button>
+		<nav>
+			<ul th:if="${errorList}">
+				<li th:each="error:${errorList}" th:text="${error}"></li>
+			</ul>
+		</nav>
+
+		<main>
+			<!--			<table border="1">-->
+			<!--				<tr>-->
+			<!--					<th>カテゴリー</th>-->
+			<!--					<td>-->
+			<!--						<select name="category">-->
+			<!--							<option th:each="category:${categories}" th:value="${category.id}"-->
+			<!--								th:text="${category.name}">-->
+			<!--							</option>-->
+			<!--						</select>-->
+			<!--					</td>-->
+			<!--				</tr>-->
+			<!--				<tr>-->
+			<!--					<th>日付</th>-->
+			<!--					<td>-->
+			<!--						<input type="date" name="date" th:value="${expens.date}">-->
+			<!--					</td>-->
+			<!--				</tr>-->
+			<!--				<tr>-->
+			<!--					<th>値段</th>-->
+			<!--					<td>-->
+			<!--						<input type="text" name="price1" th:value="${expens.price}">00円-->
+			<!--					</td>-->
+			<!--				</tr>-->
+			<!--				<tr>-->
+			<!--					<th>項目名</th>-->
+			<!--					<td>-->
+			<!--						<input type="text" name="name" th:value="${expens.name}">-->
+			<!--					</td>-->
+			<!--				</tr>-->
+			<!--			</table>-->
+			<!--			<button>更新</button>-->
+
+			<table border="1" class="price">
+				<tr>
+					<td>
+						&yen; <input type="text" name="price1" th:value="${expens.price}" class="textbox corebox">00
+					</td>
+				</tr>
+			</table>
+
+			<table class="radio">
+				<tr>
+					<td th:each="category : ${categories}" style="display: inline-block;">
+						<input type="radio" th:id="'category-' + ${category.id}" th:value="${category.id}"
+							name="category" />
+
+						<label th:for="'category-' + ${category.id}" class="label" th:text="${category.name}"></label>
+					</td>
+				</tr>
+			</table>
+
+			<table border="1" class="demo">
+				<tr>
+					<th>DATE</th>
+					<td>
+						<input type="date" name="date" th:value="${expens.date}" class="textbox">←
+					</td>
+				</tr>
+				<tr>
+					<th>MEMO</th>
+					<td>
+						<input type="text" name="name" th:value="${expens.name}" class="textbox">
+					</td>
+				</tr>
+			</table>
+			<br>
+			<button class="button button:hover excute">>>>&nbsp;&nbsp;&nbsp;EXECUTE&nbsp;&nbsp;&nbsp;<<<< /button>
 	</form>
-	<hr>
-	<a href="/home">ホームへ戻る</a>
+	</main>
 
 </body>
 

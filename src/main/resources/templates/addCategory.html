@@ -8,10 +8,53 @@
 </head>
 
 <body>
-	<h1 class="title header sync-rate">EXTLA CATEGORY</h1>
-	<form action="/home" method="get">
-		<button class="button button:hover cancel">Cancel</button>
-	</form>
+	<main>
+		<h1 class="title header sync-rate">EXTLA CATEGORY</h1>
+	</main>
+	<table class="sidebar">
+		<tr>
+			<td class="">NAME：[[${@account.name}]]</td>
+		</tr>
+		<tr>
+			<td class="">INCOME：[[${@account.income}]]</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/home" method="get">
+					<button style="width: 100%; height: 100%;" class="button button:hover">HOME</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/user">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Edit Income</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/expens/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Expenditure</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/category/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Category</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/logout">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Logout</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+
 	<div>
 		<table border="1" class="log category">
 			<tr>
@@ -30,7 +73,7 @@
 
 		<form action="/category/add" method="post">
 			<span th:text="${message}" style="color: red"></span> <br>
-			<table border="1" class="nyuuryoku">
+			<table border="1" class="nyuuryoku exe">
 				<tr>
 					<td>
 						<input class="textbox" type="text" name="name">
@@ -42,7 +85,6 @@
 			</table>
 		</form>
 	</div>
-
 </body>
 
 </html>

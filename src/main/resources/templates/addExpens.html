@@ -8,40 +8,87 @@
 </head>
 
 <body>
-	<header>
+	<main>
 		<h1 class="title header sync-rate">EXTLA EXPENDITURE</h1>
-		<form action="/home" method="get">
-			<button class="button button:hover cancel">cancel</button>
-		</form>
-	</header>
+	</main>
+
+	<table class="sidebar">
+		<tr>
+			<td class="">NAME：[[${@account.name}]]</td>
+		</tr>
+		<tr>
+			<td class="">INCOME：[[${@account.income}]]</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/home" method="get">
+					<button style="width: 100%; height: 100%;" class="button button:hover">HOME</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/user">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Edit Income</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/expens/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Expenditure</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/category/add">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Category</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form action="/logout">
+					<button style="width: 100%; height: 100%;" class="button button:hover">Logout</button>
+				</form>
+			</td>
+		</tr>
+	</table>
+
 	<form action="/expens/add" method="post">
+
 		<nav>
 			<ul th:if="${errorList}">
 				<li th:each="error:${errorList}" th:text="${error}"></li>
 			</ul>
 		</nav>
+
 		<main>
-			<table border="1" class="log">
+			<table border="1" class="price">
 				<tr>
-					<th>CATEGORY</th>
 					<td>
-						<select name="category" class="textbox">
-							<option th:each="category:${categories}" th:value="${category.id}"
-								th:text="${category.name}">
-							</option>
-						</select>
+						&yen; <input type="text" name="price1" class="textbox corebox">00
 					</td>
 				</tr>
+			</table>
+
+			<table class="radio">
+				<tr>
+					<td th:each="category : ${categories}" style="display: inline-block;">
+						<input type="radio" th:id="'category-' + ${category.id}" th:value="${category.id}"
+							name="category" />
+
+						<label th:for="'category-' + ${category.id}" class="label" th:text="${category.name}"></label>
+					</td>
+				</tr>
+			</table>
+
+			<table border="1" class="demo">
 				<tr>
 					<th>DATE</th>
 					<td>
-						<input type="date" name="date" class="textbox">
-					</td>
-				</tr>
-				<tr>
-					<th>PRICE</th>
-					<td>
-						<input type="text" name="price1" class="textbox">00円
+						<input type="date" name="date" class="textbox">←
 					</td>
 				</tr>
 				<tr>
@@ -52,7 +99,7 @@
 				</tr>
 			</table>
 			<br>
-			<button class="button button:hover">EXTLA</button>
+			<button class="button button:hover excute">>>>&nbsp;&nbsp;&nbsp;EXECUTE&nbsp;&nbsp;&nbsp;<<<</button>
 		</main>
 	</form>
 

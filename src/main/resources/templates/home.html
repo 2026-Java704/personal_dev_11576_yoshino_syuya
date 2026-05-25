@@ -10,7 +10,7 @@
 
 <body>
 	<main>
-		<h1 class="title header sync-rate"  th:classappend="${keisan < 0} ? ' danger' : ''">HOME</h1>
+		<h1 class="title header sync-rate" th:classappend="${keisan < 0} ? ' danger' : ''">HOME</h1>
 	</main>
 
 	<table border="1" th:if="${keisan < 0}" class="warning table">
@@ -31,29 +31,41 @@
 		</tr>
 		<tr>
 			<td>
+				<form action="/home" method="get">
+					<button style="width: 100%; height: 100%;" class="button button:hover"
+						th:classappend="${keisan < 0} ? ' danger' : ''">HOME</button>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td>
 				<form action="/user">
-					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Edit Income</button>
+					<button style="width: 100%; height: 100%;" class="button button:hover"
+						th:classappend="${keisan < 0} ? ' danger' : ''">Edit Income</button>
 				</form>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<form action="/expens/add">
-					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Expenditure</button>
+					<button style="width: 100%; height: 100%;" class="button button:hover"
+						th:classappend="${keisan < 0} ? ' danger' : ''">Expenditure</button>
 				</form>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<form action="/category/add">
-					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Category</button>
+					<button style="width: 100%; height: 100%;" class="button button:hover"
+						th:classappend="${keisan < 0} ? ' danger' : ''">Category</button>
 				</form>
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<form action="/logout">
-					<button style="width: 100%; height: 100%;" class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">Logout</button>
+					<button style="width: 100%; height: 100%;" class="button button:hover"
+						th:classappend="${keisan < 0} ? ' danger' : ''">Logout</button>
 				</form>
 			</td>
 		</tr>
@@ -62,9 +74,10 @@
 
 
 	<div>
-		<table border="1" class="balance-core balance-core::before balance-amount status" th:classappend="${keisan < 0} ? ' danger' : ''">
+		<table border="1" class="balance-core balance-core::before balance-amount status core"
+			th:classappend="${keisan < 0} ? ' danger' : ''">
 			<tr>
-				<th th:text="'BALANCE：' + ${keisan}"></th>
+				<th th:text="'&yen;' + ${keisan}"></th>
 			</tr>
 		</table>
 		<canvas class="panel" id="myChart" th:classappend="${keisan < 0} ? ' danger' : ''"></canvas>
@@ -88,12 +101,14 @@
 				<td th:text="${expens.name}"></td>
 				<td>
 					<form th:action="@{/expens/{expensId}/edit(expensId=${expens.id})}" method="get">
-						<button class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">edit</button>
+						<button class="button button:hover"
+							th:classappend="${keisan < 0} ? ' danger' : ''">edit</button>
 					</form>
 				</td>
 				<td>
 					<form th:action="@{/expens/{expensId}/delete(expensId=${expens.id})}" method="post">
-						<button class="button button:hover" th:classappend="${keisan < 0} ? ' danger' : ''">delete</button>
+						<button class="button button:hover"
+							th:classappend="${keisan < 0} ? ' danger' : ''">delete</button>
 					</form>
 				</td>
 			</tr>
