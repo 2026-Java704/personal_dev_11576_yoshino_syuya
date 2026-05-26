@@ -78,33 +78,42 @@ main {
 	padding: 30px;
 }
 
-
-
-/* ===== 残高コア ===== */
-.balance-core {
+/* ===== 残高コア：外側の発光担当 ===== */
+.balance-wrapper {
 	margin-left: 24%;
+	display: inline-block;
+	position: relative;
+	animation: pulseGlow 2s infinite;
+}
+
+/* ===== 残高コア本体 ===== */
+.balance-core {
+	width: 500px;
 	border: 2px solid #39FF14;
 	padding: 40px;
 	text-align: center;
 	position: relative;
 	background: rgba(0, 0, 0, 0.6);
-	box-shadow: 0 0 20px #39FF14 inset, 0 0 20px #39FF14;
+	box-shadow: 0 0 20px #39FF14 inset;
 
-	/* ===== 六角形 ===== */
 	clip-path: polygon(10% 0%, 90% 0%,
-
 			100% 20%, 100% 80%,
-
 			90% 100%, 10% 100%,
-
 			0% 80%, 0% 20%);
 }
 
+/* ===== 内側ライン ===== */
 .balance-core::before {
 	content: "";
 	position: absolute;
 	inset: 10px;
 	border: 1px solid rgba(57, 255, 20, 0.3);
+	pointer-events: none;
+
+	clip-path: polygon(10% 0%, 90% 0%,
+			100% 20%, 100% 80%,
+			90% 100%, 10% 100%,
+			0% 80%, 0% 20%);
 }
 
 .balance-amount {
@@ -118,29 +127,58 @@ main {
 	color: #39FF14;
 }
 
-/* ===== 脈動アニメーション ===== */
-@keyframes pulse {
+/* ===== 緑の発光アニメーション ===== */
+@keyframes pulseGlow {
 	0% {
-		box-shadow: 0 0 10px #39FF14;
+		filter: drop-shadow(0 0 5px #39FF14);
 	}
 
 	50% {
-		box-shadow: 0 0 30px #39FF14;
+		filter: drop-shadow(0 0 25px #39FF14);
 	}
 
 	100% {
-		box-shadow: 0 0 10px #39FF14;
+		filter: drop-shadow(0 0 5px #39FF14);
 	}
 }
 
-.balance-core {
-	animation: pulse 2s infinite;
+/* ===== 赤字モード ===== */
+.balance-wrapper.danger {
+	animation: pulseGlowDanger 2s infinite;
 }
 
-.balance-wrapper {
-	margin-left: 24%;
-	display: inline-block;
-	animation: pulse 2s infinite;
+.balance-wrapper.danger .balance-core {
+	border-color: #ff0033;
+	box-shadow: 0 0 20px #ff0033 inset;
+}
+
+.balance-wrapper.danger .balance-core::before {
+	border-color: rgba(255, 0, 51, 0.3);
+}
+
+.balance-wrapper.danger .balance-amount,
+.balance-wrapper.danger .status {
+	color: #ff0033;
+	text-shadow: 0 0 15px #ff0033;
+}
+
+.panel.denger {
+	box-shadow: 0 0 10px #ff0033;
+}
+
+/* ===== 赤の発光アニメーション ===== */
+@keyframes pulseGlowDanger {
+	0% {
+		filter: drop-shadow(0 0 5px #ff0033);
+	}
+
+	50% {
+		filter: drop-shadow(0 0 25px #ff0033);
+	}
+
+	100% {
+		filter: drop-shadow(0 0 5px #ff0033);
+	}
 }
 
 /* ===== ログフィード ===== */
@@ -178,21 +216,19 @@ main {
 	box-shadow: 0 0 10px #39FF14;
 }
 
-div {
-
+.balance-area {
 	display: flex;
-	/*	width: 350px;*/
 	height: 60vh;
+}
 
-	table {
-		height: 100px;
-		margin-right: 100px;
+.balance-area table {
+	height: 100px;
+	margin-right: 100px;
+}
 
-		tr th {
-			height: 20px;
-			max-height: 20px;
-		}
-	}
+.balance-area tr th {
+	height: 20px;
+	max-height: 20px;
 }
 
 .core {
@@ -256,24 +292,6 @@ div {
 	text-shadow: 0 0 10px #ff0033;
 }
 
-.balance-core.danger {
-	animation: blink 1s infinite;
-}
-
-@keyframes pulse {
-	0% {
-		box-shadow: 0 0 10px #39FF14;
-	}
-
-	50% {
-		box-shadow: 0 0 30px #39FF14;
-	}
-
-	100% {
-		box-shadow: 0 0 10px #39FF14;
-	}
-}
-
 .button.danger {
 	padding: 15px 30px;
 	border: 1px solid rgb(255, 0, 0);
@@ -296,6 +314,7 @@ div {
 	position: relative;
 	top: -90px;
 	left: 1200px;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 /* ===== 入力用テーブル =====*/
@@ -325,7 +344,21 @@ input[type="text"]:focus {
 	transition: 0.8s;
 }
 
-.category {
+/* ===== カテゴリ追加画面 ===== */
+.categorytable {
+	position: relative;
+	left: 300px;
+	top: 20px;
+}
+
+.categorybutton {
+	position: relative;
+	left: 700px;
+	top: -200px;
+}
+
+/* ===== ユーザーボタン =====*/
+.userbutton {
 	position: relative;
 	left: 300px;
 }
@@ -360,9 +393,9 @@ input[type=radio]:checked+.label {
 
 /* ===== 支出入力フォーム ===== */
 .price {
-	top: -20px;
+	top: -40px;
 	position: relative;
-	left: -30px;
+	left: 50px;
 	border: 1px solid #39FF14;
 	padding: 20px;
 	width: 800px;
@@ -374,13 +407,13 @@ input[type=radio]:checked+.label {
 	padding: 15px 30px;
 	text-align: center;
 	box-shadow: 0 0 20px #39FF14 inset, 0 0 20px #39FF14;
-	text-shadow: 0 0 15px #39FF14;
+	text-shadow: 0 0 30px #39FF14;
 	-webkit-text-stroke: 2px;
 }
 
 .radio {
 	position: relative;
-	left: -30px;
+	left: 50px;
 	border: 1px solid #39FF14;
 	padding: 20px;
 	width: 800px;
@@ -389,11 +422,12 @@ input[type=radio]:checked+.label {
 	background: rgba(0, 0, 0, 0.7);
 	padding: 15px 30px;
 	text-align: center;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 .demo {
 	position: relative;
-	left: -30px;
+	left: 50px;
 	top: 10px;
 	border: 1px solid #39FF14;
 	padding: 20px;
@@ -403,6 +437,7 @@ input[type=radio]:checked+.label {
 	background: rgba(0, 0, 0, 0.7);
 	padding: 15px 30px;
 	text-align: center;
+	text-shadow: 0 0 10px #39FF14;
 }
 
 .corebox {
@@ -415,16 +450,21 @@ input[type=radio]:checked+.label {
 
 .excute {
 	position: relative;
-	left: 70px;
+	left: 220px;
 	width: 600px;
+	position: absolute;
+}
+
+.boder {
+	position: relative;
+	top: -40px;
+	left: 10px;
+	padding: 70px;
+	border: 3px double #a855f7;
+	justify-content: center;
 }
 
 nav {
-	position: relative;
-	left: 300px;
-}
-
-.exe {
 	position: relative;
 	left: 300px;
 }

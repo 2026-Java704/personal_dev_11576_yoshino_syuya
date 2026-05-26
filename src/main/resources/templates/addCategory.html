@@ -61,7 +61,7 @@
 	</table>
 
 	<div>
-		<table border="1" class="log category">
+		<table border="1" class="log categorytable">
 			<tr>
 				<th>カテゴリー</th>
 				<th>削除</th>
@@ -75,21 +75,22 @@
 				</td>
 			</tr>
 		</table>
-
-		<form action="/category/add" method="post">
-			<span th:text="${message}" style="color: red"></span> <br>
-			<table border="1" class="nyuuryoku exe">
-				<tr>
-					<td>
-						<input class="textbox" type="text" name="name">
-					</td>
-					<td>
-						<button class="button button:hover">extla</button>
-					</td>
-				</tr>
-			</table>
-		</form>
 	</div>
+
+
+	<form action="/category/add" method="post">
+		<span th:text="${message}" style="color: red"></span> <br>
+		<table border="1" class="nyuuryoku categorybutton">
+			<tr>
+				<td>
+					<input class="textbox" type="text" name="name">
+				</td>
+				<td>
+					<button class="button button:hover">extla</button>
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 
 </html>

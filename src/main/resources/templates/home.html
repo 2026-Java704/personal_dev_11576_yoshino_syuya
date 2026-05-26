@@ -78,16 +78,51 @@
 
 
 
-	<div>
-		<table border="1" class="balance-core balance-core::before balance-amount status core"
-			th:classappend="${keisan < 0} ? ' danger' : ''">
-			<tr>
-				<th th:text="'&yen;' + ${keisan}"></th>
-			</tr>
-		</table>
+	<!--	<div>-->
+	<!--		<section class="balance-core">-->
+	<!--			<header class="core-title">-->
+	<!--				残高コア-->
+	<!--				<small>BALANCE CORE</small>-->
+	<!--			</header>-->
+
+	<!--			<output class="core-amount">-->
+	<!--				<table border="1" class="balance-core balance-amount status core"-->
+	<!--					th:classappend="${keisan < 0} ? ' danger' : ''">-->
+	<!--					<tr>-->
+	<!--						<th th:text="'&yen;' + ${keisan}"></th>-->
+	<!--					</tr>-->
+	<!--				</table>-->
+	<!--			</output>-->
+
+	<!--			<p class="core-status">-->
+	<!--				STATUS : STABLE-->
+	<!--			</p>-->
+
+	<!--		</section>-->
+
+	<!--		<table border="1" class="balance-core balance-amount status core"-->
+	<!--			th:classappend="${keisan < 0} ? ' danger' : ''">-->
+	<!--			<tr>-->
+	<!--				<th th:text="'&yen;' + ${keisan}"></th>-->
+	<!--			</tr>-->
+	<!--		</table>-->
+
+	<!--		<canvas class="panel" id="myChart" th:classappend="${keisan < 0} ? ' danger' : ''"></canvas>-->
+	<!--	</div>-->
+
+	<div class="balance-area">
+		<div class="balance-wrapper" th:classappend="${keisan < 0} ? ' danger' : ''">
+			<table border="1" class="balance-core">
+				<tr>
+					<th>
+						<span class="balance-amount status" th:text="'&yen;' + ${keisan}"></span>
+					</th>
+				</tr>
+			</table>
+		</div>
+
 		<canvas class="panel" id="myChart" th:classappend="${keisan < 0} ? ' danger' : ''"></canvas>
 	</div>
-
 
 	<main>
 
