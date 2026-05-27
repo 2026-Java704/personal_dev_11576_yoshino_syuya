@@ -466,5 +466,6 @@ input[type=radio]:checked+.label {
 
 nav {
 	position: relative;
-	left: 300px;
+	left: 400px;
+	text-shadow: 0 0 10px #39FF14;
 }

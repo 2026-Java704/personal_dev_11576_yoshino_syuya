@@ -307,11 +307,30 @@ public class HomeController {
 	public String logined(
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") Integer income) {
-
-		User user = new User(name, income);
-
+		
+		User user = userRepository.findByName(name).get(0);
+		
+		user.setIncome(income);
+		
 		userRepository.save(user);
 
+		return "login";
+	}
+	
+	@GetMapping("/adduser")
+	public String adduser() {
+		return "addUser";
+	}
+	
+	@PostMapping("/adduser")
+	public String addusers(
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") Integer income) {
+		
+		User user = new User(name, income);
+		
+		userRepository.save(user);
+		
 		return "login";
 	}
 
